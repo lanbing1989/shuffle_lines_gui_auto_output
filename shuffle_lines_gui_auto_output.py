@@ -7,6 +7,8 @@ import time
 def shuffle_file_lines(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
+    # 保证每一行都以换行符结尾，防止丢失最后一行
+    lines = [line if line.endswith('\n') else line + '\n' for line in lines]
     random.shuffle(lines)
     with open(output_file, 'w', encoding='utf-8') as f:
         f.writelines(lines)
